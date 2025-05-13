@@ -1,4 +1,4 @@
-# 💬 Chat with PDF using LLM
+# 💬 Chat with PDF using LLM(Local)
 
 Interact with PDF documents using natural language! This project leverages local large language models (LLMs) and embedding-based vector search to answer questions about PDF files efficiently and privately.
 
