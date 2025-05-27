@@ -4,19 +4,25 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_community.vectorstores import DocArrayInMemorySearch
 from .utils import format_docs
 
+
+#need to enhance the logic
 def build_rag_chain(pages, llm, embeddings):
     store = DocArrayInMemorySearch.from_documents(pages, embedding=embeddings)
     retriever = store.as_retriever()
 
     template = """
-    Answer the question based only on the context provided.
+You are an assistant answering questions based strictly on the provided context.
 
-    Context: {context}
+- Use ONLY the information in the context.
+- If the answer is not present or is unclear, say "The answer is not in the document."
 
-    Question: {question}
+Context:
+{context}
 
-    ** Do not provide any additional details.
-    """
+Question:
+{question}
+"""
+
     prompt = PromptTemplate.from_template(template)
 
     chain = (
